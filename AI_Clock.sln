@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.11.35327.3
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SystemTrayTimer", "SystemTrayTimer\SystemTrayTimer.csproj", "{925AA964-6EC4-4521-9BD2-A34BA0CEDAFB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{925AA964-6EC4-4521-9BD2-A34BA0CEDAFB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{925AA964-6EC4-4521-9BD2-A34BA0CEDAFB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{925AA964-6EC4-4521-9BD2-A34BA0CEDAFB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{925AA964-6EC4-4521-9BD2-A34BA0CEDAFB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {9850DFF9-5243-4D5C-A361-0957CCC81792}
+	EndGlobalSection
+EndGlobal
