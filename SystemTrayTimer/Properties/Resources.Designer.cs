@@ -63,9 +63,9 @@ namespace SystemTrayTimer.Properties {
         /// <summary>
         ///   查找类似于 (图标) 的 System.Drawing.Icon 类型的本地化资源。
         /// </summary>
-        internal static System.Drawing.Icon _texicon1 {
+        internal static System.Drawing.Icon _texicon16 {
             get {
-                object obj = ResourceManager.GetObject("_texicon1", resourceCulture);
+                object obj = ResourceManager.GetObject("_texicon16", resourceCulture);
                 return ((System.Drawing.Icon)(obj));
             }
         }

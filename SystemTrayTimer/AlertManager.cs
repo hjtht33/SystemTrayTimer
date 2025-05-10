@@ -29,7 +29,14 @@ namespace SystemTrayTimer
             // 绑定内部事件处理
             ShowPositionedAlertRequested += ShowPositionedAlert;
             // 绑定音频服务事件
-            AudioService.AlertTriggered += HandleAudioAlertTriggered;
+            AudioService.AlertTriggered += message =>
+            {
+                // 这里可以统一处理音频服务的通知
+                ErrorOccurred?.Invoke(message);
+
+                // 如果需要直接显示弹窗可添加：
+                // ShowPositionedAlert(message);
+            };
         }
         public void ConfigureAudio(bool useSystemSound, string customSoundPath, bool enableFade)
         {
@@ -59,10 +66,6 @@ namespace SystemTrayTimer
             {
                 ErrorOccurred?.Invoke(ex.Message);
             }
-        }
-        private void HandleAudioAlertTriggered(string message)
-        {
-            ErrorOccurred?.Invoke(message);
         }
 
         private void ExecutePreAlertActions()
@@ -96,7 +99,7 @@ namespace SystemTrayTimer
                 ShowPositionedAlertRequested?.Invoke(alertText);
             }
         }
-        
+
         private string GetCurrentAlertText()
         {
             // 优先使用最新保存的自定义文本
@@ -131,7 +134,7 @@ namespace SystemTrayTimer
             popup.Show();
             Application.DoEvents(); // 确保立即显示
         }
-        
+
         // 新增公共调用方法
         public void ShowCustomAlert(string customText = null)
         {
@@ -148,7 +151,7 @@ namespace SystemTrayTimer
         public void RestoreState()
         {
             _screenBlanker?.RestoreScreens();
-            
+            _screenBlanker?.Dispose();
         }
 
         private void LoadSettings()
@@ -207,16 +210,13 @@ namespace SystemTrayTimer
             {
                 // 清理托管资源
                 ShowPositionedAlertRequested -= ShowPositionedAlert;
-                AudioService.AlertTriggered -= HandleAudioAlertTriggered;
                 CloseAllForms();
-                
-                _screenBlanker = null;
-
-                // 新增清理代码
                 _screenBlanker?.Dispose();
-                AudioService?.Dispose();      // 如果 AudioAlertService 实现了 IDisposable
-                //TextManager?.Dispose();        // 如果 AlertTextManager 实现了 IDisposable
             }
+
+            // 清理非托管资源（如果有）
+            // NativeMethods.Cleanup();
+
             _disposed = true;
         }
         private void CloseAllForms()

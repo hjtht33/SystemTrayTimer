@@ -1,11 +1,7 @@
 ﻿using NAudio.Utils;
 using NAudio.Wave;
-using NAudio.Wave.SampleProviders;
 using System;
-using System.ComponentModel;
-using System.Diagnostics;
 using System.IO;
-using System.Media;
 using System.Windows.Forms;
 
 
@@ -40,10 +36,7 @@ namespace SystemTrayTimer
             {
                 PlayCustomSound();
             }
-            else
-            {
-                AlertTriggered?.Invoke("未配置有效的提示音");
-            }
+            
         }
 
         private void PlayCustomSound()

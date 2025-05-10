@@ -201,7 +201,7 @@ namespace SystemTrayTimer
             //};
 
             // 加载初始配置
-            LoadAlertSettings();
+            //LoadAlertSettings();
         }
 
         private void Timer_Tick(object sender, EventArgs e)
@@ -317,16 +317,16 @@ namespace SystemTrayTimer
                 floatingWindow.Visible = false;
             }
         }
-        private void LoadAlertSettings()
-        {
-            // 改为调用Configure方法统一加载
-            _alertManager.Configure(
-                Properties.Settings.Default.MinimizeActiveWindow,
-                Properties.Settings.Default.EnableNotifications,
-                Properties.Settings.Default.BlankScreenOnAlert,
-                Properties.Settings.Default.PositionAlertAtCursor
-            );
-        }
+        //private void LoadAlertSettings()
+        //{
+        //    // 改为调用Configure方法统一加载
+        //    _alertManager.Configure(
+        //        Properties.Settings.Default.MinimizeActiveWindow,
+        //        Properties.Settings.Default.EnableNotifications,
+        //        Properties.Settings.Default.BlankScreenOnAlert,
+        //        Properties.Settings.Default.PositionAlertAtCursor
+        //    );
+        //}
 
         // 验证屏幕位置是否有效
         private bool IsValidScreenPosition(Point position)
@@ -347,18 +347,12 @@ namespace SystemTrayTimer
             {
                 if (settingsForm.ShowDialog() == DialogResult.OK)
                 {
-                    // 保存设置到 AlertManager
+                    // 通过 AlertManager 统一配置和保存
                     _alertManager.ConfigureAudio(
-                        _alertManager.AudioService.UseSystemSound,
-                        _alertManager.AudioService.CustomSoundPath,
-                        _alertManager.AudioService.EnableFade
+                      _alertManager.AudioService.UseSystemSound,
+                      _alertManager.AudioService.CustomSoundPath,
+                      _alertManager.AudioService.EnableFade
                     );
-
-                    // 持久化存储
-                    Properties.Settings.Default.CustomSoundPath = _alertManager.AudioService.CustomSoundPath;
-                    Properties.Settings.Default.UseSystemSound = _alertManager.AudioService.UseSystemSound;
-                    Properties.Settings.Default.EnableFade = _alertManager.AudioService.EnableFade;
-                    Properties.Settings.Default.Save();
                 }
             }
         }
